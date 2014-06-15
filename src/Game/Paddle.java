@@ -19,24 +19,63 @@ import java.awt.Shape;
  * @author Alejandro
  */
 public class Paddle implements PaintableObject, Collisionable, GameBoundaries{
+    public final static int SMALL = 50,
+                            LARGE = 400;
     private double x, 
                    y;
     private Color color;
     private int width,
                 height;
+    private boolean isShooting,
+                    isHolding;
+    
     
     Paddle(){
         x = GameBoundaries.RIGHT-width/2;
         y = GameBoundaries.BOTTOM-height-60;
         
-        width = 200;
+        width = 100;
         height = 10;
         color = Color.GRAY;
+    }
+    
+    public void setShooting(boolean isShooting){
+        this.isShooting = isShooting;
+    }
+    
+    public void setHolding(boolean isHolding){
+        this.isHolding = isHolding;
+    }
+    
+    public void grow(){
+        if(width<LARGE)
+            width*=2;
+    }
+    
+    public void shrink(){
+        if(width>SMALL)
+            width/=2;
+    }
+    
+    public void miniaturize(){
+        width = SMALL;
+    }
+    
+    public boolean isHolding(){
+        return isHolding;
+    }
+    
+    public boolean isShooting(){
+        return isShooting;
     }
     
     @Override
     public void checkCollision(Collisionable c){
         throw new UnsupportedOperationException("Not supported yet!");
+    }
+    
+    public boolean collides(Collisionable c){
+        return c.getCollisionBoundary().intersects((Rectangle)getCollisionBoundary());
     }
     
     public void move(int x){
@@ -104,11 +143,9 @@ public class Paddle implements PaintableObject, Collisionable, GameBoundaries{
     
     @Override
     public void paint(Graphics g, int x, int y) {
-        g.setColor(color);
-        g.fillRect(x, y, getWidth(), getHeight());
-        g.setColor(Color.MAGENTA);
-        g.fillRect(x, y, getWidth()/6, getHeight());
-        g.fillRect(x+getWidth(), y, -getWidth()/6, getHeight());
+        setX(x);
+        setY(y);
+        paint(g);
     }
 
     @Override

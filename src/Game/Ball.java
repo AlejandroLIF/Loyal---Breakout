@@ -19,8 +19,8 @@ import java.awt.Shape;
  */
 public class Ball implements PaintableObject, GameBoundaries, Collisionable{
     private static final int diameter = 10;
-    private static final double SLOW = 1,
-                        NORMAL = 2,
+    public static final double SLOW = 2,
+                        NORMAL = 3,
                         FAST = 8;
     private double x, y, heldX;
     private double speed;
@@ -47,7 +47,7 @@ public class Ball implements PaintableObject, GameBoundaries, Collisionable{
         bouncedThisCycle = false;
         dead = false;
         speed = NORMAL;
-        direction = -0.6;
+        direction = -0.7;
     }
     
     public Ball(int x, int y, boolean held){
@@ -67,9 +67,18 @@ public class Ball implements PaintableObject, GameBoundaries, Collisionable{
         this.held = held;
     }
     
+    public void setFireBall(boolean fireBall){
+        this.fireBall = fireBall;
+    }
+    
+    public void setThroughBall(boolean throughBall){
+        this.throughBall = throughBall;
+    }
+    
     public void hold(int heldX){
         held = true;
         this.heldX = heldX;
+        y = y-diameter/2;
     }
     
     public void release(){
@@ -131,7 +140,7 @@ public class Ball implements PaintableObject, GameBoundaries, Collisionable{
     }
     
     private void bouncePaddle(Paddle p){
-        double angle[] = {1.2, 0.6, 0.3};
+        double angle[] = {1.2, 0.7, 0.45};
         double displacement = (getCenterX() - p.getCenterX())/(p.getWidth()/2.0);
         
         if(Math.abs(displacement) <= 0.30){
@@ -247,8 +256,9 @@ public class Ball implements PaintableObject, GameBoundaries, Collisionable{
     
     @Override
     public void paint(Graphics g, int x, int y){
-        g.setColor(color);
-        g.fillOval(x, y, diameter, diameter);
+        setX(x);
+        setY(y);
+        paint(g);
     }
 
     @Override
@@ -260,11 +270,16 @@ public class Ball implements PaintableObject, GameBoundaries, Collisionable{
     public void checkCollision(Collisionable c){
         if(collides(c)){
             if(c.getClass() == Paddle.class){
-                bouncePaddle((Paddle)c);
+                Paddle paddle = (Paddle)c; 
+                bouncePaddle(paddle);
+                if(paddle.isHolding()){
+                    hold(getX()-paddle.getX());
+                }
             }
             else if(c.getClass() == Brick.class){
                 ((Brick)c).damage(fireBall || throughBall);
-                bounce((Rectangle) c.getCollisionBoundary());
+                if(!throughBall)
+                    bounce((Rectangle) c.getCollisionBoundary());
             }
         }
     }

@@ -121,10 +121,9 @@ public class Brick implements PaintableObject, Collisionable{
     
     @Override
     public void paint(Graphics g, int x, int y) {
-        g.setColor(c);
-        g.fillRect(x, y, getWidth(), getHeight());
-        g.setColor(Color.BLACK);
-        g.drawRect(x, y, getWidth(), getHeight());
+        setX(x);
+        setY(y);
+        paint(g);
     }
 
     @Override
