@@ -1,6 +1,5 @@
 package Bricks;
 
-import Game.Ball;
 import Game.Collisionable;
 import Game.PaintableObject;
 import java.awt.Color;
@@ -8,7 +7,6 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
-import java.awt.geom.Rectangle2D;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
