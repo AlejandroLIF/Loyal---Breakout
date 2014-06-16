@@ -229,12 +229,12 @@ public class Instructions extends javax.swing.JInternalFrame implements PowerUpT
         FastBall.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         SplitBall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/SplitBall.png"))); // NOI18N
+        SplitBall.setSelected(true);
         SplitBall.setText("Split Ball");
         SplitBall.setToolTipText("Click to toggle Power-Up availability!");
         SplitBall.setBorderPainted(false);
         SplitBall.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         SplitBall.setDoubleBuffered(true);
-        SplitBall.setEnabled(false);
         SplitBall.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         EnlargePaddle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/LargerPaddle.png"))); // NOI18N
@@ -347,23 +347,26 @@ public class Instructions extends javax.swing.JInternalFrame implements PowerUpT
                     .addComponent(jToggleButton1)
                     .addComponent(jToggleButton2))
                 .addGap(11, 11, 11)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SplitBall)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ShootingPaddle, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(FastBall, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SlowBall, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(SplitBall)
+                        .addComponent(SlowBall, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(HoldingPaddle, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EnlargePaddle, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ScoreMultiplier, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Death, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ScoreMultiplier, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Death, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FireBall)
-                    .addComponent(ExtraLife)
-                    .addComponent(ReducePaddle)
-                    .addComponent(FallingBricks, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(FallingBricks, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(FireBall)
+                        .addComponent(ExtraLife)
+                        .addComponent(ReducePaddle)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ThroughBall)

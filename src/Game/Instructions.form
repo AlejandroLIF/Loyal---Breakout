@@ -230,25 +230,31 @@
                       <Component id="jToggleButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="SplitBall" linkSize="7" alignment="3" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="ShootingPaddle" linkSize="7" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
                       <Component id="FastBall" linkSize="7" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
-                      <Component id="SlowBall" linkSize="7" alignment="3" min="-2" pref="59" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="SplitBall" linkSize="7" alignment="3" max="-2" attributes="0"/>
+                          <Component id="SlowBall" linkSize="7" alignment="3" min="-2" pref="59" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="HoldingPaddle" linkSize="7" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
                       <Component id="EnlargePaddle" linkSize="7" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
-                      <Component id="ScoreMultiplier" linkSize="7" alignment="3" min="-2" pref="59" max="-2" attributes="0"/>
-                      <Component id="Death" linkSize="7" alignment="3" min="-2" pref="59" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="ScoreMultiplier" linkSize="7" alignment="3" min="-2" pref="59" max="-2" attributes="0"/>
+                          <Component id="Death" linkSize="7" alignment="3" min="-2" pref="59" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="FireBall" linkSize="7" alignment="3" max="-2" attributes="0"/>
-                      <Component id="ExtraLife" linkSize="7" alignment="3" max="-2" attributes="0"/>
-                      <Component id="ReducePaddle" linkSize="7" alignment="3" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="FallingBricks" linkSize="7" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="FireBall" linkSize="7" alignment="3" max="-2" attributes="0"/>
+                          <Component id="ExtraLife" linkSize="7" alignment="3" max="-2" attributes="0"/>
+                          <Component id="ReducePaddle" linkSize="7" alignment="3" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -393,6 +399,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/PowerUps/Sprites/SplitBall.png"/>
             </Property>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Split Ball"/>
             <Property name="toolTipText" type="java.lang.String" value="Click to toggle Power-Up availability!"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -400,7 +407,6 @@
               <Color id="Hand Cursor"/>
             </Property>
             <Property name="doubleBuffered" type="boolean" value="true"/>
-            <Property name="enabled" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
         </Component>
