@@ -16,7 +16,7 @@ import java.awt.Shape;
  *
  * @author Alejandro
  */
-public class Brick implements PaintableObject, Collisionable{
+public class Brick implements PaintableObject, Collisionable, Comparable<Brick>{
     static final int width = 50,
                      height = 20;
     int hp,
@@ -136,5 +136,10 @@ public class Brick implements PaintableObject, Collisionable{
     
     private void explode() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int compareTo(Brick brick) {
+        return this.getY() - brick.getY();
     }
 }
