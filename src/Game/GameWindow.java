@@ -11,19 +11,25 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.Robot;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JInternalFrame;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -37,7 +43,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  *
  * @author Alejandro
  */
-class GameWindow extends JInternalFrame implements Runnable {
+class GameWindow extends JInternalFrame implements Runnable{
     private final String WINNER = "You win!",
                          LOSER  = "Game Over!";
     
@@ -56,6 +62,8 @@ class GameWindow extends JInternalFrame implements Runnable {
     private final List<Laser> lasers;
     private final List<ExplodingDummy> explodingDummies;
     
+    private Image bg;
+    private final Cursor invisibleCursor;
     private int lives,
                 score;
     private double multiplier;
@@ -64,9 +72,10 @@ class GameWindow extends JInternalFrame implements Runnable {
     
     public GameWindow(MainMenu mainMenu) throws AWTException {
         super("", false, false, false, false);
-        this.setCursor(
-                Toolkit.getDefaultToolkit().createCustomCursor(
-                        new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB), new Point(0,0), "blank cursor"));
+        
+        invisibleCursor = Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB), new Point(0,0), "blank cursor");
+        this.setCursor(invisibleCursor);
+        
         this.mainMenu = mainMenu;
         gameWindow = this;
         ((BasicInternalFrameUI)super.getUI()).setNorthPane(null);
@@ -74,12 +83,20 @@ class GameWindow extends JInternalFrame implements Runnable {
         setVisible(true);
         setBorder(null);
         setFocusable(true);
+        
         setDoubleBuffered(true);
         setOpaque(true);
         
         addKeyListener(new KeyboardAdapter());
         addMouseListener(new MouseAdapter());
         addMouseMotionListener(new MouseAdapter());
+        
+        try {
+            bg = ImageIO.read(GameWindow.class.getResourceAsStream("/Graphics/Background.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, ex);
+            bg = new BufferedImage(GameBoundaries.RIGHT, GameBoundaries.BOTTOM, BufferedImage.TYPE_INT_ARGB);
+        }
         
         robot = new Robot();
         
@@ -137,6 +154,7 @@ class GameWindow extends JInternalFrame implements Runnable {
                 System.out.println("Thread interrupted!");
             }
         }
+        setCursor(Cursor.getDefaultCursor());
         while(true){
             repaint();
             try {
@@ -250,8 +268,7 @@ class GameWindow extends JInternalFrame implements Runnable {
     }
     
     private void paintBackground(Graphics g){
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, 800, 600);
+        g.drawImage(bg, 0, 0, GameBoundaries.RIGHT, GameBoundaries.BOTTOM, null);
     }
     
     private void drawStatusBar(Graphics g){
@@ -274,6 +291,7 @@ class GameWindow extends JInternalFrame implements Runnable {
             for(int j=200; j>=100; j-=stdBrick.getHeight())
                 bricks.add(new Brick(i, j));
         }
+        Collections.sort(bricks);
     }
     
     private void increaseScore(int score){
@@ -314,7 +332,16 @@ class GameWindow extends JInternalFrame implements Runnable {
                 lives++;
                 break;
             case SPLIT_BALL:
-                // TODO
+                ArrayList<Ball> split = new ArrayList<>();
+                for(Ball b : balls){
+                    Ball newBall = b.clone();
+                    if(b.isGoingLeft())
+                        newBall.bounceLeft();
+                    else
+                        newBall.bounceRight();
+                    split.add(newBall);
+                }
+                balls.addAll(split);
                 break;
             case ENLARGE_PADDLE:
                 paddle.grow();
@@ -357,6 +384,10 @@ class GameWindow extends JInternalFrame implements Runnable {
                     gameWindow.dispose();
                     break;
                 case KeyEvent.VK_P:
+                    if(paused)
+                        gameWindow.setCursor(invisibleCursor);
+                    else
+                        gameWindow.setCursor(Cursor.getDefaultCursor());
                     paused = !paused;
                     break;
             }
@@ -413,9 +444,8 @@ class GameWindow extends JInternalFrame implements Runnable {
 
         @Override
         public void mouseMoved(MouseEvent e) {
-            if(!paused)
-                lockMouse(e);
             if(!paused && !gameOver){
+                lockMouse(e);
                 paddle.move(e.getX());
                 for(Ball b : balls){
                     b.moveHeld(paddle.getX());
