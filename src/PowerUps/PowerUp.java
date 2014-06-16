@@ -27,7 +27,7 @@ import javax.imageio.ImageIO;
  * @author Leal
  */
 public class PowerUp implements PaintableObject, Collisionable, PowerUpType, GameBoundaries{
-    private static final double SPAWN_CHANCE = 100;
+    private static final double SPAWN_CHANCE = 10;
     private int type;
     private Image image;
     private double x,
