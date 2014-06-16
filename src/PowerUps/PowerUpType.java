@@ -25,5 +25,6 @@ public interface PowerUpType {
                      DEATH = 11,
                      FALLING_BRICKS = 12,
                      MINIATURE_PADDLE = 13,
-                     TOTAL_POWERUPS = 13;
+//                     PLACEHOLDER = 14,
+                     TOTAL_POWERUPS = 14; //14 + 1;     
 }

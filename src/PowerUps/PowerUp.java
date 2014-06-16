@@ -27,7 +27,7 @@ import javax.imageio.ImageIO;
  * @author Leal
  */
 public class PowerUp implements PaintableObject, Collisionable, PowerUpType, GameBoundaries{
-    private static final double SPAWN_CHANCE = 10;
+    private static final double SPAWN_CHANCE = 100;
     private int type;
     private Image image;
     private double x,
@@ -40,12 +40,17 @@ public class PowerUp implements PaintableObject, Collisionable, PowerUpType, Gam
         return r.nextInt(100) < SPAWN_CHANCE;
     }
     
-    public PowerUp(){
+    public PowerUp(boolean[] availablePowerUps){
         String imageName = "";
         Random r = new Random();
+        
+        do{
         type = r.nextInt(TOTAL_POWERUPS);
+        }while(!availablePowerUps[type]);
+        
         direction = -Math.PI/2;
         speed = 3;
+        
         switch(type){
             case SHOOTING_PADDLE:
                 imageName = "ShootingPaddle";
@@ -89,8 +94,10 @@ public class PowerUp implements PaintableObject, Collisionable, PowerUpType, Gam
             case MINIATURE_PADDLE:
                 imageName = "MiniaturePaddle";
                 break;
+//            case PLACEHOLDER:
+//                imageName = "PlaceHolder";
             default:
-                //Should never happen
+                //Should Never Happen
         }
         
         try {
@@ -109,12 +116,12 @@ public class PowerUp implements PaintableObject, Collisionable, PowerUpType, Gam
         return getY() > BOTTOM;
     }
     
-    public PowerUp(Point p){
-        this(p.getX(), p.getY());
+    public PowerUp(boolean[] availablePowerUps, Point p){
+        this(availablePowerUps, p.getX(), p.getY());
     }
     
-    public PowerUp(double x, double y){
-        this();
+    public PowerUp(boolean[] availablePowerUps, double x, double y){
+        this(availablePowerUps);
         this.x = x;
         this.y = y;
     }

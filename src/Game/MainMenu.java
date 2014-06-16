@@ -1,6 +1,7 @@
 package Game;
 
 
+import PowerUps.PowerUpType;
 import java.awt.AWTException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +22,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 public class MainMenu extends javax.swing.JInternalFrame {
     JDesktopPane desktop;
     Skeleton skeleton;
+    boolean[] availablePowerUps;
     /**
      * Creates new form MainMenu
      * @param desktop  The desktop that contains all elements.
@@ -32,6 +34,10 @@ public class MainMenu extends javax.swing.JInternalFrame {
         ((BasicInternalFrameUI)super.getUI()).setNorthPane(null);
         this.desktop = desktop;
         this.skeleton = skeleton;
+        availablePowerUps = new boolean[PowerUpType.TOTAL_POWERUPS];
+        for(int i=0; i<PowerUpType.TOTAL_POWERUPS; i++){
+            availablePowerUps[i] = true;
+        }
     }
     
     public int getXOnScreen(){
@@ -40,6 +46,10 @@ public class MainMenu extends javax.swing.JInternalFrame {
     
     public int getYOnScreen(){
         return skeleton.getY();
+    }
+    
+    public void setAvailablePowerUps(boolean[] availablePowerUps){
+        this.availablePowerUps = availablePowerUps;
     }
 
     /**
@@ -97,7 +107,7 @@ public class MainMenu extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3))
                     .addComponent(jLabel1))
-                .addContainerGap(262, Short.MAX_VALUE))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
@@ -112,7 +122,7 @@ public class MainMenu extends javax.swing.JInternalFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(391, Short.MAX_VALUE))
+                .addContainerGap(388, Short.MAX_VALUE))
         );
 
         pack();
@@ -122,7 +132,9 @@ public class MainMenu extends javax.swing.JInternalFrame {
         setVisible(false);
         desktop.setCursor(null);
         try {
-            desktop.add(new GameWindow(this));
+            GameWindow gameWindow = new GameWindow(this);
+            gameWindow.setAvailablePowerUps(availablePowerUps);
+            desktop.add(gameWindow);
         } catch (AWTException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }

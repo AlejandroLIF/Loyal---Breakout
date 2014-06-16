@@ -3,6 +3,7 @@ package Game;
 
 import Bricks.Brick;
 import PowerUps.PowerUp;
+import PowerUps.PowerUpType;
 import static PowerUps.PowerUpType.*;
 import Projectiles.*;
 import java.awt.AWTException;
@@ -59,6 +60,7 @@ class GameWindow extends JInternalFrame implements Runnable {
                 score;
     private double multiplier;
     private String endMessage;
+    private boolean[] availablePowerUps;
     
     public GameWindow(MainMenu mainMenu) throws AWTException {
         super("", false, false, false, false);
@@ -95,6 +97,11 @@ class GameWindow extends JInternalFrame implements Runnable {
         lives = 3;
         score = 0;
         multiplier = 1;
+        
+        availablePowerUps = new boolean[PowerUpType.TOTAL_POWERUPS];
+        for(int i=0; i<PowerUpType.TOTAL_POWERUPS; i++){
+            availablePowerUps[i] = true;
+        }
         createLevel();
     }
 
@@ -155,7 +162,7 @@ class GameWindow extends JInternalFrame implements Runnable {
                     increaseScore(brick.getScore());
                     brickIT.remove();
                     if(PowerUp.willSpawn()){
-                        powerUps.add(new PowerUp(brick.getPosition()));
+                        powerUps.add(new PowerUp(availablePowerUps, brick.getPosition()));
                     }
                 }
             }
@@ -188,7 +195,7 @@ class GameWindow extends JInternalFrame implements Runnable {
                     increaseScore(brick.getScore());
                     brickIT.remove();
                     if(PowerUp.willSpawn()){
-                        powerUps.add(new PowerUp(brick.getPosition()));
+                        powerUps.add(new PowerUp(availablePowerUps, brick.getPosition()));
                     }
                 }
             }
@@ -272,6 +279,10 @@ class GameWindow extends JInternalFrame implements Runnable {
     private void increaseScore(int score){
         this.score += score*multiplier;
     }
+    
+    public void setAvailablePowerUps(boolean[] availablePowerUps){
+        this.availablePowerUps = availablePowerUps;
+    }
 
     private void applyPowerUp(PowerUp powerUp) {
         switch(powerUp.getType()){
@@ -327,6 +338,7 @@ class GameWindow extends JInternalFrame implements Runnable {
             default:
                 //Should never happen
         }
+        increaseScore(200);
     }
     
     private class KeyboardAdapter extends KeyAdapter{
@@ -366,6 +378,11 @@ class GameWindow extends JInternalFrame implements Runnable {
                 if(paddle.isShooting()){
                     paddle.fire(lasers);
                 }
+            }
+            if(gameOver){ //Same as ESC key.
+                mainMenu.setCursor(Cursor.getDefaultCursor());
+                mainMenu.setVisible(true);
+                gameWindow.dispose();
             }
         }
 

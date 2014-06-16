@@ -40,8 +40,6 @@ public class Paddle implements PaintableObject, Collisionable, GameBoundaries{
         width = 100;
         height = 10;
         color = Color.GRAY;
-        isShooting = true;
-        isHolding = true;
     }
     
     public void setShooting(boolean isShooting){
