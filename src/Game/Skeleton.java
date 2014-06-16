@@ -24,7 +24,7 @@ public class Skeleton extends JFrame{
         int hInset = 6;
         int vInset = 28;
         desktop = new JDesktopPane();
-        desktop.add(new MainMenu(desktop));
+        desktop.add(new MainMenu(desktop, this));
         
         setContentPane(desktop);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

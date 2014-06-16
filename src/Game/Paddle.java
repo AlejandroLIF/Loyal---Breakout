@@ -2,11 +2,13 @@ package Game;
 
 
 import Bricks.Brick;
+import Projectiles.Laser;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,6 +23,7 @@ import java.awt.Shape;
 public class Paddle implements PaintableObject, Collisionable, GameBoundaries{
     public final static int SMALL = 50,
                             LARGE = 400;
+    private final static int shooterWidth = 10;
     private double x, 
                    y;
     private Color color;
@@ -37,6 +40,8 @@ public class Paddle implements PaintableObject, Collisionable, GameBoundaries{
         width = 100;
         height = 10;
         color = Color.GRAY;
+        isShooting = true;
+        isHolding = true;
     }
     
     public void setShooting(boolean isShooting){
@@ -67,6 +72,11 @@ public class Paddle implements PaintableObject, Collisionable, GameBoundaries{
     
     public boolean isShooting(){
         return isShooting;
+    }
+    
+    public void fire(List lasers){
+        lasers.add(new Laser(getX()+shooterWidth/2, getY() - Laser.height));
+        lasers.add(new Laser(getX()+getWidth()- Laser.width - shooterWidth/2, getY() - Laser.height));
     }
     
     @Override
@@ -139,6 +149,22 @@ public class Paddle implements PaintableObject, Collisionable, GameBoundaries{
         g.setColor(Color.MAGENTA);
         g.fillRect(getX(), getY(), getWidth()/6, getHeight());
         g.fillRect(getX()+getWidth(), getY(), -getWidth()/6, getHeight());
+        
+        if(isHolding){
+            g.setColor(Color.CYAN);
+            g.drawArc(getX(), getY()-getHeight()/2, getWidth(), getHeight(), -180, -180);
+        }
+        
+        if(isShooting){
+            int leftX[] = {getX(), getX()+shooterWidth/2, getX()+shooterWidth};
+            int bothY[] = {getY(), getY()-shooterWidth, getY()};
+            int rightX[] = {getX()+getWidth(), getX()+getWidth()-shooterWidth/2, getX()+getWidth()-shooterWidth};
+            
+            g.setColor(Color.GREEN);
+            g.fillPolygon(leftX, bothY, 3);
+            g.fillPolygon(rightX, bothY, 3);
+        }
+        
     }
     
     @Override

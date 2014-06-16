@@ -3,26 +3,16 @@ package Game;
 
 import Bricks.Brick;
 import PowerUps.PowerUp;
-import static PowerUps.PowerUpType.DEATH;
-import static PowerUps.PowerUpType.ENLARGE_PADDLE;
-import static PowerUps.PowerUpType.EXTRA_LIFE;
-import static PowerUps.PowerUpType.FALLING_BRICKS;
-import static PowerUps.PowerUpType.FAST_BALL;
-import static PowerUps.PowerUpType.FIREBALL;
-import static PowerUps.PowerUpType.HOLDING_PADDLE;
-import static PowerUps.PowerUpType.MINIATURE_PADDLE;
-import static PowerUps.PowerUpType.REDUCE_PADDLE;
-import static PowerUps.PowerUpType.SCORE_MULTIPLIER;
-import static PowerUps.PowerUpType.SHOOTING_PADDLE;
-import static PowerUps.PowerUpType.SLOW_BALL;
-import static PowerUps.PowerUpType.SPLIT_BALL;
-import static PowerUps.PowerUpType.THROUGH_BALL;
+import static PowerUps.PowerUpType.*;
+import Projectiles.*;
+import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.Robot;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -32,8 +22,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JInternalFrame;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -51,22 +40,27 @@ class GameWindow extends JInternalFrame implements Runnable {
     private final String WINNER = "You win!",
                          LOSER  = "Game Over!";
     
-    private JInternalFrame mainMenu,
-                           gameWindow;
+    private final MainMenu mainMenu;
+    private final GameWindow gameWindow;
+    
+    private final Robot robot;
     
     private Thread animator;
     private boolean paused,
                     gameOver;
-    private Paddle paddle;
-    private List<Ball> balls;
-    private List<Brick> bricks;
-    private List<PowerUp> powerUps;
+    private final Paddle paddle;
+    private final List<Ball> balls;
+    private final List<Brick> bricks;
+    private final List<PowerUp> powerUps;
+    private final List<Laser> lasers;
+    private final List<ExplodingDummy> explodingDummies;
+    
     private int lives,
                 score;
     private double multiplier;
     private String endMessage;
     
-    public GameWindow(JInternalFrame mainMenu) {
+    public GameWindow(MainMenu mainMenu) throws AWTException {
         super("", false, false, false, false);
         this.setCursor(
                 Toolkit.getDefaultToolkit().createCustomCursor(
@@ -85,12 +79,17 @@ class GameWindow extends JInternalFrame implements Runnable {
         addMouseListener(new MouseAdapter());
         addMouseMotionListener(new MouseAdapter());
         
+        robot = new Robot();
+        
         paused = false;
         gameOver = false;
         paddle = new Paddle();
         balls = new ArrayList<>();
         bricks = new ArrayList<>();
         powerUps = new ArrayList<>();
+        lasers = new ArrayList<>();
+        explodingDummies = new ArrayList<>();
+        
         balls.add(new Ball(paddle.getWidth()/2, paddle.getY()-Ball.getDiameter(), true));
         
         lives = 3;
@@ -112,23 +111,23 @@ class GameWindow extends JInternalFrame implements Runnable {
         final long delay = 10;
         
         while(!gameOver){
+            beforeTime = System.currentTimeMillis();
+
             if(!paused){
-                beforeTime = System.currentTimeMillis();
-                
                 gameLogic();
                 repaint();
-                
-                timeDiff = System.currentTimeMillis() - beforeTime;
-                sleep = delay - timeDiff;
-                if(sleep < 0){
-                    sleep = 2L;
-                }
-                
-                try{
-                    Thread.sleep(sleep);
-                }catch(InterruptedException e){
-                    System.out.println("Thread interrupted!");
-                }
+            }
+            
+            timeDiff = System.currentTimeMillis() - beforeTime;
+            sleep = delay - timeDiff;
+            if(sleep < 0){
+                sleep = 2L;
+            }
+
+            try{
+                Thread.sleep(sleep);
+            }catch(InterruptedException e){
+                System.out.println("Thread interrupted!");
             }
         }
         while(true){
@@ -156,7 +155,6 @@ class GameWindow extends JInternalFrame implements Runnable {
                     increaseScore(brick.getScore());
                     brickIT.remove();
                     if(PowerUp.willSpawn()){
-                        System.out.println("Power Up!");
                         powerUps.add(new PowerUp(brick.getPosition()));
                     }
                 }
@@ -176,6 +174,28 @@ class GameWindow extends JInternalFrame implements Runnable {
             else if(powerUp.isOutOfBounds())
                 powerUpIT.remove();
         }
+        
+        Iterator<Laser> laserIT = lasers.iterator();
+        while(laserIT.hasNext()){
+            Laser laser = laserIT.next();
+            laser.move();
+            
+            Iterator<Brick> brickIT = bricks.iterator();
+            while(brickIT.hasNext()){
+                Brick brick = brickIT.next();
+                laser.checkCollision(brick);
+                if(brick.isDestroyed()){
+                    increaseScore(brick.getScore());
+                    brickIT.remove();
+                    if(PowerUp.willSpawn()){
+                        powerUps.add(new PowerUp(brick.getPosition()));
+                    }
+                }
+            }
+            if(laser.isDead())
+                laserIT.remove();
+        }
+        
         if(balls.isEmpty()){
             lives--;
             if(lives > 0)
@@ -195,19 +215,20 @@ class GameWindow extends JInternalFrame implements Runnable {
     public void paint(Graphics g){
         super.paint(g);
         paintBackground(g);
+        
         paddle.paint(g);
         
-        for(Ball ball : balls){
+        for(Laser laser : lasers)
+            laser.paint(g);
+        
+        for(Ball ball : balls)
             ball.paint(g);
-        }
         
-        for(Brick brick : bricks){
+        for(Brick brick : bricks)
             brick.paint(g);
-        }
         
-        for(PowerUp powerUp : powerUps){
+        for(PowerUp powerUp : powerUps)
             powerUp.paint(g);
-        }
         
         drawStatusBar(g);
         
@@ -238,7 +259,6 @@ class GameWindow extends JInternalFrame implements Runnable {
         g.setColor(Color.YELLOW);
         String s = "Score: "+score;
         g.drawString(s, GameBoundaries.RIGHT-g.getFontMetrics().stringWidth(s), GameBoundaries.BOTTOM-bottomOffset);
-        
     }
 
     private void createLevel() {
@@ -324,6 +344,9 @@ class GameWindow extends JInternalFrame implements Runnable {
                     mainMenu.setVisible(true);
                     gameWindow.dispose();
                     break;
+                case KeyEvent.VK_P:
+                    paused = !paused;
+                    break;
             }
         }
 
@@ -336,42 +359,68 @@ class GameWindow extends JInternalFrame implements Runnable {
     private class MouseAdapter implements MouseListener, MouseMotionListener{
         @Override
         public void mouseClicked(MouseEvent e) {
-            for(Ball b : balls){
-                b.release();
+            if(!paused && !gameOver){
+                for(Ball b : balls){
+                    b.release();
+                }
+                if(paddle.isShooting()){
+                    paddle.fire(lasers);
+                }
             }
         }
 
         @Override
         public void mousePressed(MouseEvent e) {
-            throw new UnsupportedOperationException("Mouse Pressed Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            //Do nothing
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            throw new UnsupportedOperationException("Mouse Released Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            //Do nothing
         }
 
         @Override
         public void mouseEntered(MouseEvent e) {
-//            throw new UnsupportedOperationException("Mouse Entered Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            //Do nothing
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
-//            throw new UnsupportedOperationException("Mouse Exited Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            //Do nothing
         }
 
         @Override
         public void mouseDragged(MouseEvent e) {
-            throw new UnsupportedOperationException("Mouse Dragged Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            mouseMoved(e);
         }
 
         @Override
         public void mouseMoved(MouseEvent e) {
-            paddle.move(e.getX());
-            for(Ball b : balls){
-                b.moveHeld(paddle.getX());
+            if(!paused)
+                lockMouse(e);
+            if(!paused && !gameOver){
+                paddle.move(e.getX());
+                for(Ball b : balls){
+                    b.moveHeld(paddle.getX());
+                }
             }
+        }
+        
+        /**
+         * Locks mouse within the screen. WARNING: uses magic numbers.
+         * @param e The triggering mouse event.
+         */
+        private void lockMouse(MouseEvent e){
+            final int gameWindowX = mainMenu.getXOnScreen(),
+                      gameWindowY = mainMenu.getYOnScreen();
+            
+            int mouseX = e.getX(),
+                mouseY = e.getY();
+            if(mouseX < GameBoundaries.LEFT   + paddle.getWidth()/4  ||
+               mouseX > GameBoundaries.RIGHT  - paddle.getWidth()/4  ||
+               mouseY < GameBoundaries.TOP    + 100                  ||
+               mouseY > GameBoundaries.BOTTOM - 100)
+                robot.mouseMove(gameWindowX + paddle.getCenterX(), gameWindowY + 400);
         }
     }
 }

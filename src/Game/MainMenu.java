@@ -1,6 +1,9 @@
 package Game;
 
 
+import java.awt.AWTException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -17,15 +20,26 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class MainMenu extends javax.swing.JInternalFrame {
     JDesktopPane desktop;
+    Skeleton skeleton;
     /**
      * Creates new form MainMenu
-     * @param desktop
+     * @param desktop  The desktop that contains all elements.
+     * @param skeleton The skeleton holding the game together.
      */
-    public MainMenu(JDesktopPane desktop) {
+    public MainMenu(JDesktopPane desktop, Skeleton skeleton) {
         initComponents();
         setVisible(true);
         ((BasicInternalFrameUI)super.getUI()).setNorthPane(null);
         this.desktop = desktop;
+        this.skeleton = skeleton;
+    }
+    
+    public int getXOnScreen(){
+        return skeleton.getX()+3;
+    } 
+    
+    public int getYOnScreen(){
+        return skeleton.getY();
     }
 
     /**
@@ -107,7 +121,11 @@ public class MainMenu extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         setVisible(false);
         desktop.setCursor(null);
-        desktop.add(new GameWindow(this));
+        try {
+            desktop.add(new GameWindow(this));
+        } catch (AWTException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
