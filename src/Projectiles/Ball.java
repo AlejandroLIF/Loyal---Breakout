@@ -11,6 +11,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -71,12 +73,30 @@ public class Ball implements PaintableObject, GameBoundaries, Collisionable{
         this.held = held;
     }
     
+    @Override
+    public Ball clone(){
+        Ball clone = new Ball(getX(), getY());
+        clone.setFireBall(fireBall);
+        clone.setSpeed(speed);
+        clone.setThroughBall(throughBall);
+        clone.setDirection(direction);
+        if(this.isGoingLeft())
+            clone.bounceLeft();
+        else
+            clone.bounceRight();
+        return clone;
+    }
+    
     public void setFireBall(boolean fireBall){
         this.fireBall = fireBall;
     }
     
     public void setThroughBall(boolean throughBall){
         this.throughBall = throughBall;
+    }
+    
+    public void setDirection(double direction){
+        this.direction = direction;
     }
     
     public void hold(int heldX){
@@ -127,19 +147,19 @@ public class Ball implements PaintableObject, GameBoundaries, Collisionable{
         y = tempY;
     }
     
-    private void bounceBottom(){
+    public void bounceBottom(){
         direction = -direction;
     }
     
-    private void bounceTop(){
+    public void bounceTop(){
         direction = -direction;
     }
     
-    private void bounceLeft(){
+    public void bounceLeft(){
         direction = (direction > 0) ? (Math.PI - direction) : (-Math.PI - direction);
     }
     
-    private void bounceRight(){
+    public void bounceRight(){
         direction = (direction > 0) ? (-Math.PI - direction) : (Math.PI - direction);
     }
     
@@ -210,6 +230,14 @@ public class Ball implements PaintableObject, GameBoundaries, Collisionable{
     public void goFaster(){
         if(speed<FAST)
             speed+=.2;
+    }
+    
+    /**
+     * 
+     * @return true, if the direction of the ball is up/down to the left; false, otherwise.
+     */
+    public boolean isGoingLeft(){
+        return Math.abs(direction) > Math.PI/2;
     }
     
     
