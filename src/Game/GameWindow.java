@@ -20,16 +20,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -48,6 +50,7 @@ class GameWindow extends JInternalFrame implements Runnable{
                          LOSER  = "Game Over!";
     
     private final MainMenu mainMenu;
+    private final JDesktopPane desktop;
     private final GameWindow gameWindow;
     
     private final Robot robot;
@@ -70,17 +73,22 @@ class GameWindow extends JInternalFrame implements Runnable{
     private String endMessage;
     private boolean[] availablePowerUps;
     
-    public GameWindow(MainMenu mainMenu) throws AWTException {
+    public GameWindow(MainMenu mainMenu, JDesktopPane desktop) throws AWTException {
         super("", false, false, false, false);
-        
-        invisibleCursor = Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB), new Point(0,0), "blank cursor");
-        this.setCursor(invisibleCursor);
-        
+        this.desktop = desktop;
         this.mainMenu = mainMenu;
         gameWindow = this;
+        
+        availablePowerUps = new boolean[PowerUpType.TOTAL_POWERUPS];
+        
+        desktop.add(new PowerUpSelector(this, availablePowerUps));
+        
+        invisibleCursor = Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB), new Point(0,0), "blank cursor");
+        setCursor(invisibleCursor);
+        
         ((BasicInternalFrameUI)super.getUI()).setNorthPane(null);
         setSize(800,600);
-        setVisible(true);
+        setVisible(false);
         setBorder(null);
         setFocusable(true);
         
@@ -298,6 +306,24 @@ class GameWindow extends JInternalFrame implements Runnable{
         this.score += score*multiplier;
     }
     
+    public void drop(List<Brick> bricks){
+        ListIterator<Brick> i, j;
+        Brick a, b;
+        boolean canFall;
+        for(i = bricks.listIterator(); i.hasNext(); /* i.next() */){
+            a = i.next();
+            canFall = a.getY() <= GameBoundaries.BOTTOM - 200; //MAGIC NUMBER
+            for(j = bricks.listIterator(i.nextIndex()); j.hasNext() && canFall; /* j.next() */){
+                b = j.next();
+                if(a.getFallBoundary().intersects((Rectangle2D) b.getCollisionBoundary())){
+                    canFall = false;
+                }
+            }
+            if(canFall)
+                a.fall();
+        }
+    }
+    
     public void setAvailablePowerUps(boolean[] availablePowerUps){
         this.availablePowerUps = availablePowerUps;
     }
@@ -357,7 +383,8 @@ class GameWindow extends JInternalFrame implements Runnable{
                 lives--;
                 break;
             case FALLING_BRICKS:
-//                throw new UnsupportedOperationException("Not supported yet!");
+                for(int i=0; i<3; i++)
+                    drop(bricks);
                 break;
             case MINIATURE_PADDLE:
                 paddle.miniaturize();
