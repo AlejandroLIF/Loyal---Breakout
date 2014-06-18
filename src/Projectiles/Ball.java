@@ -11,8 +11,6 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,7 +25,7 @@ public class Ball implements PaintableObject, GameBoundaries, Collisionable{
     private static final int diameter = 10;
     public static final double SLOW = 2,
                         NORMAL = 3,
-                        FAST = 8;
+                        FAST = 7;
     private double x, y, heldX;
     private double speed;
     private double direction;
