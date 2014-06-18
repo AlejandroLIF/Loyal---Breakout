@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.util.Iterator;
+import java.util.List;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,13 +19,13 @@ import java.awt.Shape;
  * @author Alejandro
  */
 public class Brick implements PaintableObject, Collisionable, Comparable<Brick>{
-    static final int width = 50,
-                     height = 20;
-    int hp,
-        score,
-        x,
-        y;
-    Color c;
+    private static final int width = 50,
+                             height = 20;
+    private int hp,
+                score,
+                x,
+                y;
+    private Color c;
     
     public Brick(int x, int y){
         this.x = x;
@@ -49,6 +51,14 @@ public class Brick implements PaintableObject, Collisionable, Comparable<Brick>{
     
     public boolean isDestroyed(){
         return hp == 0;
+    }
+    
+    public void fall(){
+        setY(getY()+height);
+    }
+    
+    public Rectangle getFallBoundary(){
+        return new Rectangle(getX()+5, getY()+getHeight()+5, getHeight()-10, getHeight()-10);
     }
     
     public int getScore(){
@@ -115,6 +125,8 @@ public class Brick implements PaintableObject, Collisionable, Comparable<Brick>{
         g.fillRect(getX(), getY(), getWidth(), getHeight());
         g.setColor(Color.BLACK);
         g.drawRect(getX(), getY(), getWidth(), getHeight());
+        g.setColor(Color.ORANGE);
+        g.drawRect(getX()+5, getY()+getHeight()+5, getWidth()-10, getHeight()-10);
     }
     
     @Override
@@ -140,6 +152,6 @@ public class Brick implements PaintableObject, Collisionable, Comparable<Brick>{
 
     @Override
     public int compareTo(Brick brick) {
-        return this.getY() - brick.getY();
+        return brick.getY() - this.getY();
     }
 }
