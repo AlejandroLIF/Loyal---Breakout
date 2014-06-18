@@ -1,7 +1,6 @@
 package Game;
 
 import PowerUps.PowerUpType;
-import javax.swing.JInternalFrame;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /*
@@ -265,12 +264,12 @@ public class Instructions extends javax.swing.JInternalFrame implements PowerUpT
         Death.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         FallingBricks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/FallingBricks.png"))); // NOI18N
+        FallingBricks.setSelected(true);
         FallingBricks.setText("Falling Bricks");
         FallingBricks.setToolTipText("Click to toggle Power-Up availability!");
         FallingBricks.setBorderPainted(false);
         FallingBricks.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         FallingBricks.setDoubleBuffered(true);
-        FallingBricks.setEnabled(false);
         FallingBricks.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         MiniaturePaddle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/MiniaturePaddle.png"))); // NOI18N
