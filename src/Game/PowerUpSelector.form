@@ -150,9 +150,9 @@
                       </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="ThroughBall" linkSize="1" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
-                      <Component id="MiniaturePaddle" linkSize="1" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                      <Component id="MiniaturePaddle" linkSize="1" min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -166,7 +166,7 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/PowerUps/Sprites/HoldingPaddle.png"/>
+              <Image iconType="3" name="/PowerUps/Sprites/HoldingPaddle_Grayscale.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Holding Paddle"/>
@@ -187,6 +187,9 @@
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 60]"/>
             </Property>
+            <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/PowerUps/Sprites/HoldingPaddle.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="ThroughBall">
@@ -195,7 +198,7 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/PowerUps/Sprites/ThroughBall.png"/>
+              <Image iconType="3" name="/PowerUps/Sprites/ThroughBall_Grayscale.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Through Ball"/>
@@ -216,6 +219,9 @@
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 60]"/>
             </Property>
+            <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/PowerUps/Sprites/ThroughBall.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="ScoreMultiplier">
@@ -224,7 +230,7 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/PowerUps/Sprites/ScoreMultiplier.png"/>
+              <Image iconType="3" name="/PowerUps/Sprites/ScoreMultiplier_Grayscale.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Score Multiplier"/>
@@ -245,6 +251,9 @@
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 60]"/>
             </Property>
+            <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/PowerUps/Sprites/ScoreMultiplier.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="SplitBall">
@@ -253,7 +262,7 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/PowerUps/Sprites/SplitBall.png"/>
+              <Image iconType="3" name="/PowerUps/Sprites/SplitBall_Grayscale.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Split Ball"/>
@@ -274,6 +283,9 @@
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 60]"/>
             </Property>
+            <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/PowerUps/Sprites/SplitBall.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="Death">
@@ -282,7 +294,7 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/PowerUps/Sprites/Death.png"/>
+              <Image iconType="3" name="/PowerUps/Sprites/Death_Grayscale.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Death"/>
@@ -303,6 +315,9 @@
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 60]"/>
             </Property>
+            <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/PowerUps/Sprites/Death.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="EnlargePaddle">
@@ -311,7 +326,7 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/PowerUps/Sprites/LargerPaddle.png"/>
+              <Image iconType="3" name="/PowerUps/Sprites/LargerPaddle_Grayscale.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Enlarge Paddle"/>
@@ -332,6 +347,9 @@
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 60]"/>
             </Property>
+            <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/PowerUps/Sprites/LargerPaddle.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="SlowBall">
@@ -340,7 +358,7 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/PowerUps/Sprites/SlowBall.png"/>
+              <Image iconType="3" name="/PowerUps/Sprites/SlowBall_Grayscale.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Slow Ball"/>
@@ -361,6 +379,9 @@
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 60]"/>
             </Property>
+            <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/PowerUps/Sprites/SlowBall.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="ExtraLife">
@@ -369,7 +390,7 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/PowerUps/Sprites/ExtraLife.png"/>
+              <Image iconType="3" name="/PowerUps/Sprites/ExtraLife_Grayscale.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Extra Life"/>
@@ -390,6 +411,9 @@
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 60]"/>
             </Property>
+            <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/PowerUps/Sprites/ExtraLife.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="MiniaturePaddle">
@@ -398,7 +422,7 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/PowerUps/Sprites/MiniaturePaddle.png"/>
+              <Image iconType="3" name="/PowerUps/Sprites/MiniaturePaddle_Grayscale.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Miniature Paddle"/>
@@ -419,6 +443,9 @@
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 60]"/>
             </Property>
+            <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/PowerUps/Sprites/MiniaturePaddle.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="ShootingPaddle">
@@ -427,7 +454,7 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/PowerUps/Sprites/ShootingPaddle.png"/>
+              <Image iconType="3" name="/PowerUps/Sprites/ShootingPaddle_Grayscale.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Shooting Paddle"/>
@@ -448,6 +475,9 @@
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 60]"/>
             </Property>
+            <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/PowerUps/Sprites/ShootingPaddle.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="FastBall">
@@ -456,7 +486,7 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/PowerUps/Sprites/FastBall.png"/>
+              <Image iconType="3" name="/PowerUps/Sprites/FastBall_Grayscale.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Fast Ball"/>
@@ -477,6 +507,9 @@
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 60]"/>
             </Property>
+            <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/PowerUps/Sprites/FastBall.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="FallingBricks">
@@ -485,7 +518,7 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/PowerUps/Sprites/FallingBricks.png"/>
+              <Image iconType="3" name="/PowerUps/Sprites/FallingBricks_Grayscale.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Falling Bricks"/>
@@ -506,6 +539,9 @@
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 60]"/>
             </Property>
+            <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/PowerUps/Sprites/FallingBricks.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="FireBall">
@@ -514,7 +550,7 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/PowerUps/Sprites/FireBall.png"/>
+              <Image iconType="3" name="/PowerUps/Sprites/FireBall_Grayscale.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Fire Ball"/>
             <Property name="toolTipText" type="java.lang.String" value="Click to toggle Power-Up availability!"/>
@@ -535,6 +571,9 @@
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 60]"/>
             </Property>
+            <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/PowerUps/Sprites/FireBall.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="ReducePaddle">
@@ -543,7 +582,7 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/PowerUps/Sprites/SmallerPaddle.png"/>
+              <Image iconType="3" name="/PowerUps/Sprites/SmallerPaddle_Grayscale.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Shrink Paddle"/>
@@ -563,6 +602,9 @@
             </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 60]"/>
+            </Property>
+            <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/PowerUps/Sprites/SmallerPaddle.png"/>
             </Property>
           </Properties>
         </Component>

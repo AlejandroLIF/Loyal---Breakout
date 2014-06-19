@@ -90,7 +90,7 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         setPreferredSize(new java.awt.Dimension(836, 606));
 
         HoldingPaddle.setBackground(new java.awt.Color(239, 239, 239));
-        HoldingPaddle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/HoldingPaddle.png"))); // NOI18N
+        HoldingPaddle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/HoldingPaddle_Grayscale.png"))); // NOI18N
         HoldingPaddle.setSelected(true);
         HoldingPaddle.setText("Holding Paddle");
         HoldingPaddle.setToolTipText("Click to toggle Power-Up availability!");
@@ -102,9 +102,10 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         HoldingPaddle.setMaximumSize(new java.awt.Dimension(180, 60));
         HoldingPaddle.setMinimumSize(new java.awt.Dimension(180, 60));
         HoldingPaddle.setPreferredSize(new java.awt.Dimension(180, 60));
+        HoldingPaddle.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/HoldingPaddle.png"))); // NOI18N
 
         ThroughBall.setBackground(new java.awt.Color(239, 239, 239));
-        ThroughBall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/ThroughBall.png"))); // NOI18N
+        ThroughBall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/ThroughBall_Grayscale.png"))); // NOI18N
         ThroughBall.setSelected(true);
         ThroughBall.setText("Through Ball");
         ThroughBall.setToolTipText("Click to toggle Power-Up availability!");
@@ -116,9 +117,10 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         ThroughBall.setMaximumSize(new java.awt.Dimension(180, 60));
         ThroughBall.setMinimumSize(new java.awt.Dimension(180, 60));
         ThroughBall.setPreferredSize(new java.awt.Dimension(180, 60));
+        ThroughBall.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/ThroughBall.png"))); // NOI18N
 
         ScoreMultiplier.setBackground(new java.awt.Color(239, 239, 239));
-        ScoreMultiplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/ScoreMultiplier.png"))); // NOI18N
+        ScoreMultiplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/ScoreMultiplier_Grayscale.png"))); // NOI18N
         ScoreMultiplier.setSelected(true);
         ScoreMultiplier.setText("Score Multiplier");
         ScoreMultiplier.setToolTipText("Click to toggle Power-Up availability!");
@@ -130,9 +132,10 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         ScoreMultiplier.setMaximumSize(new java.awt.Dimension(180, 60));
         ScoreMultiplier.setMinimumSize(new java.awt.Dimension(180, 60));
         ScoreMultiplier.setPreferredSize(new java.awt.Dimension(180, 60));
+        ScoreMultiplier.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/ScoreMultiplier.png"))); // NOI18N
 
         SplitBall.setBackground(new java.awt.Color(239, 239, 239));
-        SplitBall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/SplitBall.png"))); // NOI18N
+        SplitBall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/SplitBall_Grayscale.png"))); // NOI18N
         SplitBall.setSelected(true);
         SplitBall.setText("Split Ball");
         SplitBall.setToolTipText("Click to toggle Power-Up availability!");
@@ -144,9 +147,10 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         SplitBall.setMaximumSize(new java.awt.Dimension(180, 60));
         SplitBall.setMinimumSize(new java.awt.Dimension(180, 60));
         SplitBall.setPreferredSize(new java.awt.Dimension(180, 60));
+        SplitBall.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/SplitBall.png"))); // NOI18N
 
         Death.setBackground(new java.awt.Color(239, 239, 239));
-        Death.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/Death.png"))); // NOI18N
+        Death.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/Death_Grayscale.png"))); // NOI18N
         Death.setSelected(true);
         Death.setText("Death");
         Death.setToolTipText("Click to toggle Power-Up availability!");
@@ -158,9 +162,10 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         Death.setMaximumSize(new java.awt.Dimension(180, 60));
         Death.setMinimumSize(new java.awt.Dimension(180, 60));
         Death.setPreferredSize(new java.awt.Dimension(180, 60));
+        Death.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/Death.png"))); // NOI18N
 
         EnlargePaddle.setBackground(new java.awt.Color(239, 239, 239));
-        EnlargePaddle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/LargerPaddle.png"))); // NOI18N
+        EnlargePaddle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/LargerPaddle_Grayscale.png"))); // NOI18N
         EnlargePaddle.setSelected(true);
         EnlargePaddle.setText("Enlarge Paddle");
         EnlargePaddle.setToolTipText("Click to toggle Power-Up availability!");
@@ -172,9 +177,10 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         EnlargePaddle.setMaximumSize(new java.awt.Dimension(180, 60));
         EnlargePaddle.setMinimumSize(new java.awt.Dimension(180, 60));
         EnlargePaddle.setPreferredSize(new java.awt.Dimension(180, 60));
+        EnlargePaddle.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/LargerPaddle.png"))); // NOI18N
 
         SlowBall.setBackground(new java.awt.Color(239, 239, 239));
-        SlowBall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/SlowBall.png"))); // NOI18N
+        SlowBall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/SlowBall_Grayscale.png"))); // NOI18N
         SlowBall.setSelected(true);
         SlowBall.setText("Slow Ball");
         SlowBall.setToolTipText("Click to toggle Power-Up availability!");
@@ -186,9 +192,10 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         SlowBall.setMaximumSize(new java.awt.Dimension(180, 60));
         SlowBall.setMinimumSize(new java.awt.Dimension(180, 60));
         SlowBall.setPreferredSize(new java.awt.Dimension(180, 60));
+        SlowBall.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/SlowBall.png"))); // NOI18N
 
         ExtraLife.setBackground(new java.awt.Color(239, 239, 239));
-        ExtraLife.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/ExtraLife.png"))); // NOI18N
+        ExtraLife.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/ExtraLife_Grayscale.png"))); // NOI18N
         ExtraLife.setSelected(true);
         ExtraLife.setText("Extra Life");
         ExtraLife.setToolTipText("Click to toggle Power-Up availability!");
@@ -200,9 +207,10 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         ExtraLife.setMaximumSize(new java.awt.Dimension(180, 60));
         ExtraLife.setMinimumSize(new java.awt.Dimension(180, 60));
         ExtraLife.setPreferredSize(new java.awt.Dimension(180, 60));
+        ExtraLife.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/ExtraLife.png"))); // NOI18N
 
         MiniaturePaddle.setBackground(new java.awt.Color(239, 239, 239));
-        MiniaturePaddle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/MiniaturePaddle.png"))); // NOI18N
+        MiniaturePaddle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/MiniaturePaddle_Grayscale.png"))); // NOI18N
         MiniaturePaddle.setSelected(true);
         MiniaturePaddle.setText("Miniature Paddle");
         MiniaturePaddle.setToolTipText("Click to toggle Power-Up availability!");
@@ -214,9 +222,10 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         MiniaturePaddle.setMaximumSize(new java.awt.Dimension(180, 60));
         MiniaturePaddle.setMinimumSize(new java.awt.Dimension(180, 60));
         MiniaturePaddle.setPreferredSize(new java.awt.Dimension(180, 60));
+        MiniaturePaddle.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/MiniaturePaddle.png"))); // NOI18N
 
         ShootingPaddle.setBackground(new java.awt.Color(239, 239, 239));
-        ShootingPaddle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/ShootingPaddle.png"))); // NOI18N
+        ShootingPaddle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/ShootingPaddle_Grayscale.png"))); // NOI18N
         ShootingPaddle.setSelected(true);
         ShootingPaddle.setText("Shooting Paddle");
         ShootingPaddle.setToolTipText("Click to toggle Power-Up availability!");
@@ -228,9 +237,10 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         ShootingPaddle.setMaximumSize(new java.awt.Dimension(180, 60));
         ShootingPaddle.setMinimumSize(new java.awt.Dimension(180, 60));
         ShootingPaddle.setPreferredSize(new java.awt.Dimension(180, 60));
+        ShootingPaddle.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/ShootingPaddle.png"))); // NOI18N
 
         FastBall.setBackground(new java.awt.Color(239, 239, 239));
-        FastBall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/FastBall.png"))); // NOI18N
+        FastBall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/FastBall_Grayscale.png"))); // NOI18N
         FastBall.setSelected(true);
         FastBall.setText("Fast Ball");
         FastBall.setToolTipText("Click to toggle Power-Up availability!");
@@ -242,9 +252,10 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         FastBall.setMaximumSize(new java.awt.Dimension(180, 60));
         FastBall.setMinimumSize(new java.awt.Dimension(180, 60));
         FastBall.setPreferredSize(new java.awt.Dimension(180, 60));
+        FastBall.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/FastBall.png"))); // NOI18N
 
         FallingBricks.setBackground(new java.awt.Color(239, 239, 239));
-        FallingBricks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/FallingBricks.png"))); // NOI18N
+        FallingBricks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/FallingBricks_Grayscale.png"))); // NOI18N
         FallingBricks.setSelected(true);
         FallingBricks.setText("Falling Bricks");
         FallingBricks.setToolTipText("Click to toggle Power-Up availability!");
@@ -256,9 +267,10 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         FallingBricks.setMaximumSize(new java.awt.Dimension(180, 60));
         FallingBricks.setMinimumSize(new java.awt.Dimension(180, 60));
         FallingBricks.setPreferredSize(new java.awt.Dimension(180, 60));
+        FallingBricks.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/FallingBricks.png"))); // NOI18N
 
         FireBall.setBackground(new java.awt.Color(239, 239, 239));
-        FireBall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/FireBall.png"))); // NOI18N
+        FireBall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/FireBall_Grayscale.png"))); // NOI18N
         FireBall.setText("Fire Ball");
         FireBall.setToolTipText("Click to toggle Power-Up availability!");
         FireBall.setBorderPainted(false);
@@ -270,9 +282,10 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         FireBall.setMaximumSize(new java.awt.Dimension(180, 60));
         FireBall.setMinimumSize(new java.awt.Dimension(180, 60));
         FireBall.setPreferredSize(new java.awt.Dimension(180, 60));
+        FireBall.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/FireBall.png"))); // NOI18N
 
         ReducePaddle.setBackground(new java.awt.Color(239, 239, 239));
-        ReducePaddle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/SmallerPaddle.png"))); // NOI18N
+        ReducePaddle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/SmallerPaddle_Grayscale.png"))); // NOI18N
         ReducePaddle.setSelected(true);
         ReducePaddle.setText("Shrink Paddle");
         ReducePaddle.setToolTipText("Click to toggle Power-Up availability!");
@@ -284,6 +297,7 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         ReducePaddle.setMaximumSize(new java.awt.Dimension(180, 60));
         ReducePaddle.setMinimumSize(new java.awt.Dimension(180, 60));
         ReducePaddle.setPreferredSize(new java.awt.Dimension(180, 60));
+        ReducePaddle.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/PowerUps/Sprites/SmallerPaddle.png"))); // NOI18N
 
         jLabel1.setText("Click to toggle the available Power-Ups for this game.");
 
@@ -359,7 +373,7 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
                         .addComponent(ExtraLife, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(ReducePaddle, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ThroughBall, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MiniaturePaddle, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
