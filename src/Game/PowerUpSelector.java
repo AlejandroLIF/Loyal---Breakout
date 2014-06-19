@@ -7,6 +7,12 @@
 package Game;
 
 import PowerUps.PowerUpType;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import javax.swing.GrayFilter;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
