@@ -44,7 +44,7 @@ public class Ball implements PaintableObject, GameBoundaries, Collisionable{
     public Ball(int x, int y){
         this.x = x;
         this.y = y;
-        color = Color.RED;
+        color = Color.BLACK;
         fireBall = false;
         throughBall = false;
         held = false;
@@ -289,7 +289,9 @@ public class Ball implements PaintableObject, GameBoundaries, Collisionable{
         else
             color = Color.GRAY;
         g.setColor(color);
+        g.setXORMode(Color.BLACK);
         g.fillOval(getX(), getY(), diameter, diameter);
+        g.setPaintMode();
     }
     
     @Override
