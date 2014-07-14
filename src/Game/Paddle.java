@@ -34,12 +34,18 @@ public class Paddle implements PaintableObject, Collisionable, GameBoundaries{
     
     
     Paddle(){
-        x = GameBoundaries.RIGHT-width/2;
-        y = GameBoundaries.BOTTOM-height-60;
-        
         width = 100;
         height = 10;
         color = Color.GRAY;
+        
+        x = GameBoundaries.CENTERX-width/2;
+        y = GameBoundaries.BOTTOM-height-60;
+    }
+    
+    Paddle(int x, int y){
+        this();
+        this.x = x;
+        this.y = y;
     }
     
     public void setShooting(boolean isShooting){
