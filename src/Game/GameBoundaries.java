@@ -14,4 +14,6 @@ public interface GameBoundaries {
     public final int BOTTOM = 600;
     public final int TOP = 0;
     public final int LEFT = 0;
+    public final int CENTERX = RIGHT/2;
+    public final int CENTERY = BOTTOM/2;
 }
