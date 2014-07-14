@@ -7,12 +7,6 @@
 package Game;
 
 import PowerUps.PowerUpType;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import javax.swing.GrayFilter;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -38,8 +32,6 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
         
         this.gameWindow = gameWindow;
         this.availablePowerUps = availablePowerUps;
-        
-        System.out.println("PowerUpSelector built!");
     }
     
     public void updatePowerUps(){
@@ -426,6 +418,7 @@ public class PowerUpSelector extends javax.swing.JInternalFrame implements Power
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         updatePowerUps();
+        gameWindow.selectLevel();
         gameWindow.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

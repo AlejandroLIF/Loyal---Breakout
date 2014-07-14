@@ -22,7 +22,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -32,7 +35,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JDesktopPane;
+import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /*
@@ -60,12 +66,12 @@ class GameWindow extends JInternalFrame implements Runnable{
                     gameOver;
     private final Paddle paddle;
     private final List<Ball> balls;
-    private final List<Brick> bricks;
+    private List<Brick> bricks;
     private final List<PowerUp> powerUps;
     private final List<Laser> lasers;
     private final List<ExplodingDummy> explodingDummies;
     
-    private Image bg;
+    private Image background;
     private final Cursor invisibleCursor;
     private int lives,
                 score;
@@ -83,6 +89,7 @@ class GameWindow extends JInternalFrame implements Runnable{
         
         desktop.add(new PowerUpSelector(this, availablePowerUps));
         
+        
         invisibleCursor = Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB), new Point(0,0), "blank cursor");
         setCursor(invisibleCursor);
         
@@ -98,13 +105,6 @@ class GameWindow extends JInternalFrame implements Runnable{
         addKeyListener(new KeyboardAdapter());
         addMouseListener(new MouseAdapter());
         addMouseMotionListener(new MouseAdapter());
-        
-        try {
-            bg = ImageIO.read(GameWindow.class.getResourceAsStream("/Graphics/Background.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, ex);
-            bg = new BufferedImage(GameBoundaries.RIGHT, GameBoundaries.BOTTOM, BufferedImage.TYPE_INT_ARGB);
-        }
         
         robot = new Robot();
         
@@ -127,14 +127,36 @@ class GameWindow extends JInternalFrame implements Runnable{
         for(int i=0; i<PowerUpType.TOTAL_POWERUPS; i++){
             availablePowerUps[i] = true;
         }
-        createLevel();
+    }
+    
+    protected void selectLevel(){
+        JFileChooser fileChooser = new JFileChooser("Level select:");
+        fileChooser.setCurrentDirectory(new File("Levels"));
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setMultiSelectionEnabled(false);
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Breakout Level", new String[]{"BOL"}));
+        switch(fileChooser.showOpenDialog(this)){
+            case JFileChooser.APPROVE_OPTION:
+                createLevel(fileChooser.getSelectedFile());
+                break;
+            case JFileChooser.CANCEL_OPTION:
+            case JFileChooser.ERROR_OPTION:
+                returnToMainMenu();
+                break;
+            default:
+        }
+    }
+    
+    private void returnToMainMenu(){
+        mainMenu.setCursor(Cursor.getDefaultCursor());
+        mainMenu.setVisible(true);
+        gameWindow.dispose();
     }
 
     @Override
     public void addNotify(){
         super.addNotify();
         animator = new Thread(this);
-        animator.start();
     }
     
     @Override
@@ -276,7 +298,7 @@ class GameWindow extends JInternalFrame implements Runnable{
     }
     
     private void paintBackground(Graphics g){
-        g.drawImage(bg, 0, 0, GameBoundaries.RIGHT, GameBoundaries.BOTTOM, null);
+        g.drawImage(background, 0, 0, GameBoundaries.RIGHT, GameBoundaries.BOTTOM, null);
     }
     
     private void drawStatusBar(Graphics g){
@@ -293,13 +315,17 @@ class GameWindow extends JInternalFrame implements Runnable{
         g.drawString(s, GameBoundaries.RIGHT-g.getFontMetrics().stringWidth(s), GameBoundaries.BOTTOM-bottomOffset);
     }
 
-    private void createLevel() {
-        Brick stdBrick = new Brick(0,0);
-        for(int i=100; i<GameBoundaries.RIGHT-100; i+=stdBrick.getWidth()){
-            for(int j=200; j>=100; j-=stdBrick.getHeight())
-                bricks.add(new Brick(i, j));
+    private void createLevel(File file) {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+            bricks = (ArrayList<Brick>) ois.readObject();
+            background = ImageIO.read(ois);
+            ois.close();
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Failed to load level. Press OK to return to title.", "Critical error!", JOptionPane.ERROR_MESSAGE);
         }
-        Collections.sort(bricks);
+        animator.start();
     }
     
     private void increaseScore(int score){
@@ -406,9 +432,7 @@ class GameWindow extends JInternalFrame implements Runnable{
         public void keyPressed(KeyEvent e) {
             switch(e.getKeyCode()){
                 case KeyEvent.VK_ESCAPE:
-                    mainMenu.setCursor(Cursor.getDefaultCursor());
-                    mainMenu.setVisible(true);
-                    gameWindow.dispose();
+                    returnToMainMenu();
                     break;
                 case KeyEvent.VK_P:
                     if(paused)
@@ -438,9 +462,7 @@ class GameWindow extends JInternalFrame implements Runnable{
                 }
             }
             if(gameOver){ //Same as ESC key.
-                mainMenu.setCursor(Cursor.getDefaultCursor());
-                mainMenu.setVisible(true);
-                gameWindow.dispose();
+                returnToMainMenu();
             }
         }
 

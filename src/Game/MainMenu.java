@@ -1,7 +1,6 @@
 package Game;
 
 
-import PowerUps.PowerUpType;
 import java.awt.AWTException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,6 +54,7 @@ public class MainMenu extends javax.swing.JInternalFrame {
         Instructions = new javax.swing.JButton();
         Exit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        LevelEditorButton = new javax.swing.JButton();
 
         setBorder(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -83,6 +83,13 @@ public class MainMenu extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Loyal Breakout");
 
+        LevelEditorButton.setText("Level Editor");
+        LevelEditorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LevelEditorButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,17 +97,20 @@ public class MainMenu extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(259, 259, 259)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(NewGame)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Instructions)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Exit))
-                    .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LevelEditorButton)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Instructions)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Exit)))))
                 .addContainerGap(266, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Exit, Instructions, NewGame});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Exit, Instructions, LevelEditorButton, NewGame});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +122,9 @@ public class MainMenu extends javax.swing.JInternalFrame {
                     .addComponent(NewGame)
                     .addComponent(Instructions)
                     .addComponent(Exit))
-                .addContainerGap(388, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LevelEditorButton)
+                .addContainerGap(356, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,10 +148,16 @@ public class MainMenu extends javax.swing.JInternalFrame {
         desktop.add(new Instructions(this));
     }//GEN-LAST:event_InstructionsActionPerformed
 
+    private void LevelEditorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LevelEditorButtonActionPerformed
+        setVisible(false);
+        desktop.add(new LevelEditor(this));
+    }//GEN-LAST:event_LevelEditorButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Exit;
     private javax.swing.JButton Instructions;
+    private javax.swing.JButton LevelEditorButton;
     private javax.swing.JButton NewGame;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
