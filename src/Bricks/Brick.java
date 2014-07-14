@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.io.Serializable;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,26 +17,26 @@ import java.awt.Shape;
  *
  * @author Alejandro
  */
-public class Brick implements PaintableObject, Collisionable, Comparable<Brick>{
+public class Brick implements PaintableObject, Collisionable, Comparable<Brick>, Serializable{
     private static final int width = 50,
                              height = 20;
     private int hp,
                 score,
                 x,
                 y;
-    private Color c;
+    private Color color;
     
     public Brick(int x, int y){
         this.x = x;
         this.y = y;
         score = 100;
         hp = 1;
-        c = Color.CYAN;
+        color = Color.CYAN;
     }
     
     public Brick(int x, int y, Color c){
         this(x, y);
-        this.c = c;
+        this.color = c;
     }
     
     public Brick(Point p){
@@ -44,7 +45,7 @@ public class Brick implements PaintableObject, Collisionable, Comparable<Brick>{
     
     public Brick(Point p, Color c){
         this(p);
-        this.c = c;
+        this.color = c;
     }
     
     public boolean isDestroyed(){
@@ -116,10 +117,18 @@ public class Brick implements PaintableObject, Collisionable, Comparable<Brick>{
     public void setY(int y) {
         this.y = y;
     }
+    
+    public void setColor(Color c){
+        this.color = c;
+    }
+    
+    public Color getColor(){
+        return color;
+    }
 
     @Override
     public void paint(Graphics g) {
-        g.setColor(c);
+        g.setColor(color);
         g.fillRect(getX(), getY(), getWidth(), getHeight());
         g.setColor(Color.BLACK);
         g.drawRect(getX(), getY(), getWidth(), getHeight());
